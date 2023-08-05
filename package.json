@@ -47,7 +47,8 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "prettier": "^2.6.2",
     "prettier-plugin-tailwindcss": "^0.3.0",
-    "prisma": "^5.0.0"
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.1"
   },
   "peerDependencies": {
     "eslint": "^7.23.0 || ^8.0.0",
