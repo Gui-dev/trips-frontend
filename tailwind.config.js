@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'search-background': 'url(/world-map.png)',
+      },
       colors: {
         primary: {
           normal: '#590BDB',
@@ -14,7 +17,7 @@ module.exports = {
           darker: '#312A4F',
         },
         textColor: {
-          dark: '#717171',
+          darker: '#717171',
         },
       },
     },
