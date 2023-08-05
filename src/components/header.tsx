@@ -25,7 +25,7 @@ export const Header = () => {
 
   return (
     <header className="container mx-auto flex h-[93px] items-center justify-between p-5 py-0">
-      <Link href="/">
+      <Link href="/" as={'img'}>
         <Image src="/logo.png" width={183} height={32} alt="Trips Logo" />
       </Link>
       {status === 'unauthenticated' && (
