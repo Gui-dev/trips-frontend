@@ -1,6 +1,9 @@
-import { TripItem } from './trip-item'
+import { TripItem } from '@/components/trip-item'
+import { prisma } from '@/lib/prisma'
 
-export const RecommendedTrips = () => {
+export const TripsRecommended = async () => {
+  const trips = await prisma.trip.findMany({})
+
   return (
     <div className="container mx-auto p-5">
       <div className="flex items-center justify-between gap-2">
@@ -12,7 +15,9 @@ export const RecommendedTrips = () => {
       </div>
 
       <div className="mt-5 flex flex-col items-center gap-5">
-        <TripItem />
+        {trips.map((trip) => {
+          return <TripItem key={trip.id} trip={trip} />
+        })}
       </div>
     </div>
   )
