@@ -50,7 +50,7 @@ export const Header = () => {
             className="rounded-full shadow-md"
           />
           {isOpenMenu && (
-            <div className="absolute left-0 top-12 flex h-full w-full items-center justify-center rounded-full border border-solid border-gray-200 bg-white p-2 px-3 shadow-md">
+            <div className="absolute left-0 top-12 z-10 flex h-full w-full items-center justify-center rounded-full border border-solid border-gray-200 bg-white p-2 px-3 shadow-md">
               <button
                 className="text-sm font-semibold text-primary-normal"
                 onClick={handleLogout}
