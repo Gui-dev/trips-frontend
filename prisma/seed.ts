@@ -12,6 +12,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Amalfi, Itália',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'IT',
         cover_image:
           'https://images.unsplash.com/photo-1455587734955-081b22074882?ixlib=rb-4.0.3&ixid=M3wxMA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -39,6 +41,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'New York, Estados Unidos',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero,et molestiae illo iusto nulla hic suntalias doloremque quod ratione culpa explicabo eum,in praesentium, dolore incidunt nostrum ad.',
         country_code: 'US',
         cover_image:
           'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -66,6 +70,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Florença, Itália',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero,et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'IT',
         cover_image:
           'https://images.unsplash.com/photo-1534612899740-55c821a90129?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -93,6 +99,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Lago Sereno, Suíça',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'CH',
         cover_image:
           'https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
@@ -120,6 +128,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Madrid, Espanha',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'ES',
         cover_image:
           'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -147,6 +157,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Montreal, Canadá',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'CA',
         cover_image:
           'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -174,6 +186,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Oslo, Noruega',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'NO',
         cover_image:
           'https://images.unsplash.com/photo-1610530531783-56a4e92a3305?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -201,6 +215,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Amsterdam, Holanda',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'NL',
         cover_image:
           'https://images.unsplash.com/photo-1500076656116-558758c991c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80',
@@ -228,6 +244,8 @@ async function main() {
         start_date: new Date('2023-07-03'),
         end_date: new Date('2023-07-30'),
         location: 'Paris, França',
+        location_description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae libero, et molestiae illo iusto nulla hic sunt alias doloremque quod ratione culpa explicabo eum, in praesentium, dolore incidunt nostrum ad.',
         country_code: 'FR',
         cover_image:
           'https://images.unsplash.com/photo-1515496281361-241a540151a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80',
