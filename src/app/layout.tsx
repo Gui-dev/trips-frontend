@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 import { Header } from '@/components/header'
+import Footer from '@/components/Footer'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <AuthProvider>
           <Header />
           {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>
