@@ -10,15 +10,19 @@ import {
   TripReservationValidationData,
   tripReservationValidation,
 } from '@/validations/trip-reservation-validation'
+import { differenceInDays } from 'date-fns'
+import { currencyFormat } from '@/lib/currency-format'
 
 interface ITripReservation {
   max_guests: number
+  price_per_day: number
   trip_start_date: Date
   trip_end_date: Date
 }
 
 export const TripReservation = ({
   max_guests,
+  price_per_day,
   trip_start_date,
   trip_end_date,
 }: ITripReservation) => {
@@ -33,6 +37,10 @@ export const TripReservation = ({
   })
 
   const startDate = watch('start_date')
+  const endDate = watch('end_date')
+  const total = currencyFormat(
+    differenceInDays(endDate, startDate) * price_per_day,
+  )
 
   const handleCreateReservation = (data: any) => {
     try {
@@ -92,8 +100,14 @@ export const TripReservation = ({
           errorMessage={errors.guests?.message}
         />
         <div className="mt-3 flex items-center justify-between">
-          <p className="text-sm font-semibold text-primary-darker">Total: </p>
-          <p>R$2.500,00</p>
+          {startDate && endDate && (
+            <>
+              <p className="text-sm font-semibold text-primary-darker">
+                Total:{' '}
+              </p>
+              <p>{total}</p>
+            </>
+          )}
         </div>
         <Button variant="primary">Reservar agora</Button>
       </form>
