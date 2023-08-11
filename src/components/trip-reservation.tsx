@@ -2,7 +2,6 @@
 
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Trip } from '@prisma/client'
 
 import { DatePicker } from '@/components/datepicker'
 import { Input } from './input'
@@ -13,18 +12,27 @@ import {
 } from '@/validations/trip-reservation-validation'
 
 interface ITripReservation {
-  trip: Trip
+  max_guests: number
+  trip_start_date: Date
+  trip_end_date: Date
 }
 
-export const TripReservation = ({ trip }: ITripReservation) => {
+export const TripReservation = ({
+  max_guests,
+  trip_start_date,
+  trip_end_date,
+}: ITripReservation) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
     register,
+    watch,
   } = useForm<TripReservationValidationData>({
     resolver: zodResolver(tripReservationValidation),
   })
+
+  const startDate = watch('start_date')
 
   const handleCreateReservation = (data: any) => {
     try {
@@ -50,7 +58,7 @@ export const TripReservation = ({ trip }: ITripReservation) => {
                 selected={field.value}
                 onChange={field.onChange}
                 className="w-full"
-                minDate={new Date()}
+                minDate={trip_start_date}
                 error={!!errors?.start_date}
                 errorMessage={errors.start_date?.message}
               />
@@ -66,7 +74,8 @@ export const TripReservation = ({ trip }: ITripReservation) => {
                 selected={field.value}
                 onChange={field.onChange}
                 className="w-full"
-                minDate={new Date()}
+                maxDate={trip_end_date}
+                minDate={startDate ?? trip_start_date}
                 error={!!errors?.end_date}
                 errorMessage={errors.end_date?.message}
               />
@@ -76,8 +85,8 @@ export const TripReservation = ({ trip }: ITripReservation) => {
         <Input
           type="number"
           min={1}
-          max={trip.max_guests}
-          placeholder={`Número de hospedes (max ${trip.max_guests})`}
+          max={max_guests}
+          placeholder={`Número de hospedes (max ${max_guests})`}
           {...register('guests')}
           error={!!errors.guests}
           errorMessage={errors.guests?.message}
