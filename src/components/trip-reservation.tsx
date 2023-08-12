@@ -14,6 +14,7 @@ import { differenceInDays } from 'date-fns'
 import { currencyFormat } from '@/lib/currency-format'
 
 interface ITripReservation {
+  trip_id: string
   max_guests: number
   price_per_day: number
   trip_start_date: Date
@@ -21,6 +22,7 @@ interface ITripReservation {
 }
 
 export const TripReservation = ({
+  trip_id,
   max_guests,
   price_per_day,
   trip_start_date,
@@ -42,9 +44,21 @@ export const TripReservation = ({
     differenceInDays(endDate, startDate) * price_per_day,
   )
 
-  const handleCreateReservation = (data: any) => {
+  const handleCreateReservation = async (
+    data: TripReservationValidationData,
+  ) => {
     try {
-      console.log('Data: ', data)
+      const response = await fetch('http://localhost:3000/api/trips/check', {
+        method: 'POST',
+        body: JSON.stringify({
+          trip_id,
+          start_date: data.start_date,
+          end_date: data.end_date,
+        }),
+      })
+      const reservation = await response.json()
+
+      console.log('RESPONSE: ', reservation)
     } catch (error) {
       console.log(error)
     }
