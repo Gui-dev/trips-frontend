@@ -2,6 +2,7 @@
 
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { differenceInDays } from 'date-fns'
 
 import { DatePicker } from '@/components/datepicker'
 import { Input } from './input'
@@ -10,7 +11,6 @@ import {
   TripReservationValidationData,
   tripReservationValidation,
 } from '@/validations/trip-reservation-validation'
-import { differenceInDays } from 'date-fns'
 import { currencyFormat } from '@/lib/currency-format'
 
 interface ITripReservation {
@@ -77,6 +77,7 @@ export const TripReservation = ({
             render={({ field }) => (
               <DatePicker
                 placeholderText="Data de início"
+                dateFormat="dd/MM/yyyy"
                 selected={field.value}
                 onChange={field.onChange}
                 className="w-full"
@@ -93,6 +94,7 @@ export const TripReservation = ({
             render={({ field }) => (
               <DatePicker
                 placeholderText="Data final"
+                dateFormat="dd/MM/yyyy"
                 selected={field.value}
                 onChange={field.onChange}
                 className="w-full"
