@@ -1,8 +1,36 @@
 import { prisma } from '@/lib/prisma'
+import { isBefore } from 'date-fns'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const POST = async (request: NextRequest) => {
   const req = await request.json()
+
+  const trip = await prisma.trip.findUnique({
+    where: {
+      id: req.trip_id,
+    },
+  })
+
+  if (!trip) {
+    return new NextResponse(
+      JSON.stringify({
+        error: {
+          code: 'TRIP_NOT_FOUND',
+        },
+      }),
+    )
+  }
+
+  if (isBefore(new Date(req.start_date), new Date(trip.end_date))) {
+    return new NextResponse(
+      JSON.stringify({
+        error: {
+          code: 'INVALID_START_DATE',
+        },
+      }),
+    )
+  }
+
   const reservations = await prisma.tripReservation.findMany({
     where: {
       trip_id: req.trip_id,
