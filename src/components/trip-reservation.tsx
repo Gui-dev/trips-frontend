@@ -33,6 +33,7 @@ export const TripReservation = ({
     handleSubmit,
     formState: { errors },
     register,
+    setError,
     watch,
   } = useForm<TripReservationValidationData>({
     resolver: zodResolver(tripReservationValidation),
@@ -58,9 +59,34 @@ export const TripReservation = ({
       })
       const reservation = await response.json()
 
+      if (reservation?.error?.code === 'TRIP_ALREADY_RESERVED') {
+        setError('start_date', {
+          type: 'manual',
+          message: 'Esta data já está reservada',
+        })
+        setError('end_date', {
+          type: 'manual',
+          message: 'Esta data já está reservada',
+        })
+      }
+
+      if (reservation?.error?.code === 'INVALID_START_DATE') {
+        setError('start_date', {
+          type: 'manual',
+          message: 'Data inválida',
+        })
+      }
+
+      if (reservation?.error?.code === 'INVALID_START_DATE') {
+        setError('end_date', {
+          type: 'manual',
+          message: 'Data inválida',
+        })
+      }
+
       console.log('RESPONSE: ', reservation)
     } catch (error) {
-      console.log(error)
+      console.log('ERROR: ', error)
     }
   }
 

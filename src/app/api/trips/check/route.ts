@@ -21,7 +21,7 @@ export const POST = async (request: NextRequest) => {
     )
   }
 
-  if (isBefore(new Date(req.start_date), new Date(trip.end_date))) {
+  if (isBefore(new Date(req.start_date), new Date(trip.start_date))) {
     return new NextResponse(
       JSON.stringify({
         error: {
