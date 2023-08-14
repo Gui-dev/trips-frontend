@@ -64,21 +64,21 @@ export const TripReservation = ({
           type: 'manual',
           message: 'Esta data já está reservada',
         })
-        setError('end_date', {
+        return setError('end_date', {
           type: 'manual',
           message: 'Esta data já está reservada',
         })
       }
 
       if (reservation?.error?.code === 'INVALID_START_DATE') {
-        setError('start_date', {
+        return setError('start_date', {
           type: 'manual',
           message: 'Data inválida',
         })
       }
 
       if (reservation?.error?.code === 'INVALID_START_DATE') {
-        setError('end_date', {
+        return setError('end_date', {
           type: 'manual',
           message: 'Data inválida',
         })
@@ -137,7 +137,12 @@ export const TripReservation = ({
           min={1}
           max={max_guests}
           placeholder={`Número de hospedes (max ${max_guests})`}
-          {...register('guests')}
+          {...register('guests', {
+            max: {
+              value: max_guests,
+              message: `O número de hospedes não pode ser maior que ${max_guests}`,
+            },
+          })}
           error={!!errors.guests}
           errorMessage={errors.guests?.message}
         />
