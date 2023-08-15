@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { differenceInDays } from 'date-fns'
@@ -28,6 +29,7 @@ export const TripReservation = ({
   trip_start_date,
   trip_end_date,
 }: ITripReservation) => {
+  const navigation = useRouter()
   const {
     control,
     handleSubmit,
@@ -49,12 +51,13 @@ export const TripReservation = ({
     data: TripReservationValidationData,
   ) => {
     try {
+      const { start_date, end_date, guests } = data
       const response = await fetch('http://localhost:3000/api/trips/check', {
         method: 'POST',
         body: JSON.stringify({
           trip_id,
-          start_date: data.start_date,
-          end_date: data.end_date,
+          start_date,
+          end_date,
         }),
       })
       const reservation = await response.json()
@@ -84,7 +87,10 @@ export const TripReservation = ({
         })
       }
 
-      console.log('RESPONSE: ', reservation)
+      navigation.push(
+        `/trips/${trip_id}/confirmation?start_date=${start_date.toISOString()}&end_date=${end_date.toISOString()}&guests=${guests}
+        `,
+      )
     } catch (error) {
       console.log('ERROR: ', error)
     }
