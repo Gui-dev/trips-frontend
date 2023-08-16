@@ -36,7 +36,12 @@ const TripConfirmation = ({
           end_date: searchParams.get('end_date'),
         }),
       })
-      const { trip, total_price } = await response.json()
+      const { trip, total_price, ...rest } = await response.json()
+
+      if (rest?.error) {
+        return router.push('/')
+      }
+
       setTrip(trip)
       setTotal(currencyFormat(Number(total_price)))
     }
