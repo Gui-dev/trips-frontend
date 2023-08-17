@@ -11,6 +11,7 @@ import { ptBR } from 'date-fns/locale'
 
 import { currencyFormat } from '@/lib/currency-format'
 import { Button } from '@/components/button'
+import { toast } from 'react-toastify'
 
 const TripConfirmation = ({
   params,
@@ -19,11 +20,11 @@ const TripConfirmation = ({
     trip_id: string
   }
 }) => {
-  const { status } = useSession()
+  const { status, data } = useSession()
   const router = useRouter()
   const searchParams = useSearchParams()
   const [trip, setTrip] = useState<Trip>()
-  const [total, setTotal] = useState('0')
+  const [total, setTotal] = useState<number>()
   const { trip_id } = params
 
   useEffect(() => {
@@ -41,9 +42,8 @@ const TripConfirmation = ({
       if (rest?.error) {
         return router.push('/')
       }
-
       setTrip(trip)
-      setTotal(currencyFormat(Number(total_price)))
+      setTotal(total_price)
     }
     if (status === 'unauthenticated') {
       router.push('/')
@@ -66,9 +66,35 @@ const TripConfirmation = ({
     },
   )
   const guests = searchParams.get('guests')
+  const total_formatted = currencyFormat(Number(total))
+
+  const handleTripConfirmation = async () => {
+    const response = await fetch(
+      'http://localhost:3000/api/trips/reservation',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          trip_id,
+          user_id: data?.user.id,
+          guests: Number(guests),
+          total_paid: total,
+          end_date: searchParams.get('end_date'),
+          start_date: searchParams.get('start_date'),
+        }),
+      },
+    )
+
+    if (!response.ok) {
+      return toast.error(
+        'Ocorreu um erro ao realizar a reserva! Tente mais tarde',
+      )
+    }
+    toast.success('Reserva realizada com sucesso')
+    router.push('/')
+  }
 
   if (!trip) {
-    return
+    return toast.error('Essa viagem não foi encontrada')
   }
 
   return (
@@ -103,7 +129,7 @@ const TripConfirmation = ({
         <div className="flex items-center justify-between">
           <p className="mt-2 text-lg text-textColor-darker">Total</p>
           <strong className="text-xl font-semibold text-primary-darker">
-            {total}
+            {total_formatted}
           </strong>
         </div>
       </div>
@@ -118,7 +144,11 @@ const TripConfirmation = ({
           Número de Hóspedes
         </h3>
         <p className="text-lg text-textColor-darker">{guests} hóspedes</p>
-        <Button variant="primary" className="mt-5">
+        <Button
+          variant="primary"
+          className="mt-5"
+          onClick={handleTripConfirmation}
+        >
           Finalizar Compra
         </Button>
       </div>

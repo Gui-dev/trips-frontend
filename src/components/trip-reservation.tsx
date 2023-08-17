@@ -50,50 +50,46 @@ export const TripReservation = ({
   const handleCreateReservation = async (
     data: TripReservationValidationData,
   ) => {
-    try {
-      const { start_date, end_date, guests } = data
-      const response = await fetch('http://localhost:3000/api/trips/check', {
-        method: 'POST',
-        body: JSON.stringify({
-          trip_id,
-          start_date,
-          end_date,
-        }),
+    const { start_date, end_date, guests } = data
+    const response = await fetch('http://localhost:3000/api/trips/check', {
+      method: 'POST',
+      body: JSON.stringify({
+        trip_id,
+        start_date,
+        end_date,
+      }),
+    })
+    const reservation = await response.json()
+    console.log('ERROR: ', reservation)
+    if (reservation?.error?.code === 'TRIP_ALREADY_RESERVED') {
+      setError('start_date', {
+        type: 'manual',
+        message: 'Esta data já está reservada',
       })
-      const reservation = await response.json()
-
-      if (reservation?.error?.code === 'TRIP_ALREADY_RESERVED') {
-        setError('start_date', {
-          type: 'manual',
-          message: 'Esta data já está reservada',
-        })
-        return setError('end_date', {
-          type: 'manual',
-          message: 'Esta data já está reservada',
-        })
-      }
-
-      if (reservation?.error?.code === 'INVALID_START_DATE') {
-        return setError('start_date', {
-          type: 'manual',
-          message: 'Data inválida',
-        })
-      }
-
-      if (reservation?.error?.code === 'INVALID_START_DATE') {
-        return setError('end_date', {
-          type: 'manual',
-          message: 'Data inválida',
-        })
-      }
-
-      navigation.push(
-        `/trips/${trip_id}/confirmation?start_date=${start_date.toISOString()}&end_date=${end_date.toISOString()}&guests=${guests}
-        `,
-      )
-    } catch (error) {
-      console.log('ERROR: ', error)
+      return setError('end_date', {
+        type: 'manual',
+        message: 'Esta data já está reservada',
+      })
     }
+
+    if (reservation?.error?.code === 'INVALID_START_DATE') {
+      return setError('start_date', {
+        type: 'manual',
+        message: 'Data inválida',
+      })
+    }
+
+    if (reservation?.error?.code === 'INVALID_START_DATE') {
+      return setError('end_date', {
+        type: 'manual',
+        message: 'Data inválida',
+      })
+    }
+
+    navigation.push(
+      `/trips/${trip_id}/confirmation?start_date=${start_date.toISOString()}&end_date=${end_date.toISOString()}&guests=${guests}
+        `,
+    )
   }
 
   return (
