@@ -32,6 +32,7 @@ model TripReservation {
   id         String   @id @default(uuid())
   trip_id    String
   user_id    String
+  guests     Int
   start_date DateTime
   end_date   DateTime
   total_paid Decimal  @db.Decimal(8, 2)
