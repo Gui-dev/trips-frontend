@@ -50,9 +50,15 @@ export const Header = () => {
             className="rounded-full shadow-md"
           />
           {isOpenMenu && (
-            <div className="absolute left-0 top-12 z-10 flex h-full w-full items-center justify-center rounded-full border border-solid border-gray-200 bg-white p-2 px-3 shadow-md">
+            <div className="absolute -right-1 top-12 z-10 flex h-[100px] w-auto flex-col items-center justify-center gap-3 rounded-lg border border-solid border-gray-200 bg-white p-2 px-3 shadow-md">
+              <Link
+                href="/my-trips"
+                className="border-b border-solid border-primary-light pb-2 text-center text-xs font-semibold text-primary-normal"
+              >
+                Minhas viagens
+              </Link>
               <button
-                className="text-sm font-semibold text-primary-normal"
+                className="pb-2 text-xs font-semibold text-primary-normal"
                 onClick={handleLogout}
               >
                 Logout
