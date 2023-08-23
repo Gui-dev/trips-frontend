@@ -1,8 +1,12 @@
+'use client'
+
 import { Prisma } from '@prisma/client'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import Image from 'next/image'
 import ReactCountryFlag from 'react-country-flag'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 import { Button } from '@/components/button'
 import { currencyFormat } from '@/lib/currency-format'
@@ -16,6 +20,7 @@ interface IUserReservationItem {
 }
 
 export const UserReservationItem = ({ reservation }: IUserReservationItem) => {
+  const router = useRouter()
   const total_formatted = currencyFormat(Number(reservation.total_paid))
   const start_date = format(new Date(reservation.start_date), "dd 'de' MMMM", {
     locale: ptBR,
@@ -23,6 +28,18 @@ export const UserReservationItem = ({ reservation }: IUserReservationItem) => {
   const end_date = format(new Date(reservation.start_date), "dd 'de' MMMM", {
     locale: ptBR,
   })
+
+  const handleDelete = async () => {
+    const response = await fetch(`/api/trips/reservation/${reservation.id}`, {
+      method: 'DELETE',
+    })
+
+    if (!response.ok) {
+      return toast.error('Ocorreu um erro ao tentar cancelar a reserva')
+    }
+    toast.success(`Reserva para ${reservation.trip.name} cancelada com sucesso`)
+    router.push('/my-trips')
+  }
 
   return (
     <>
@@ -73,7 +90,7 @@ export const UserReservationItem = ({ reservation }: IUserReservationItem) => {
               {total_formatted}
             </strong>
           </div>
-          <Button variant="danger" className="mt-5">
+          <Button variant="danger" className="mt-5" onClick={handleDelete}>
             Cancelar
           </Button>
         </div>
