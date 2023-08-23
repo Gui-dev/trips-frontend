@@ -54,6 +54,7 @@ export const Header = () => {
               <Link
                 href="/my-trips"
                 className="border-b border-solid border-primary-light pb-2 text-center text-xs font-semibold text-primary-normal"
+                onClick={handleOpenMenu}
               >
                 Minhas viagens
               </Link>
