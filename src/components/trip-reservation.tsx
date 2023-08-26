@@ -60,7 +60,6 @@ export const TripReservation = ({
       }),
     })
     const reservation = await response.json()
-    console.log('ERROR: ', reservation)
     if (reservation?.error?.code === 'TRIP_ALREADY_RESERVED') {
       setError('start_date', {
         type: 'manual',

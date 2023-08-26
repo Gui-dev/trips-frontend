@@ -28,8 +28,6 @@ export const DELETE = async (
     },
   })
 
-  console.log('AQUII: ', tripReservation)
-
   if (!tripReservation) {
     return new NextResponse(
       JSON.stringify({
