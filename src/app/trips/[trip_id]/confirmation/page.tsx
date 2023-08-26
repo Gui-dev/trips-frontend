@@ -8,10 +8,10 @@ import Image from 'next/image'
 import ReactCountryFlag from 'react-country-flag'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { loadStripe } from '@stripe/stripe-js'
 
 import { currencyFormat } from '@/lib/currency-format'
 import { Button } from '@/components/button'
-import { toast } from 'react-toastify'
 
 const TripConfirmation = ({
   params,
@@ -68,33 +68,30 @@ const TripConfirmation = ({
   const guests = searchParams.get('guests')
   const total_formatted = currencyFormat(Number(total))
 
-  const handleTripConfirmation = async () => {
-    const response = await fetch(
-      'http://localhost:3000/api/trips/reservation',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          trip_id,
-          user_id: data?.user.id,
-          guests: Number(guests),
-          total_paid: total,
-          end_date: searchParams.get('end_date'),
-          start_date: searchParams.get('start_date'),
-        }),
-      },
-    )
-
-    if (!response.ok) {
-      return toast.error(
-        'Ocorreu um erro ao realizar a reserva! Tente mais tarde',
-      )
-    }
-    toast.success('Reserva realizada com sucesso')
-    router.push('/')
+  if (!trip) {
+    return
   }
 
-  if (!trip) {
-    return toast.error('Essa viagem não foi encontrada')
+  const handleTripConfirmation = async () => {
+    const response = await fetch('http://localhost:3000/api/payment', {
+      method: 'POST',
+      body: JSON.stringify({
+        trip_id,
+        user_id: data?.user.id,
+        name: trip.name,
+        description: trip.description,
+        cover_image: trip.cover_image,
+        guests: Number(guests),
+        total_price: total,
+        end_date: searchParams.get('end_date'),
+        start_date: searchParams.get('start_date'),
+      }),
+    })
+    const { session_id } = await response.json()
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!)
+    await stripe?.redirectToCheckout({
+      sessionId: session_id,
+    })
   }
 
   return (
