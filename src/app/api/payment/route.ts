@@ -19,7 +19,7 @@ export const POST = async (request: NextRequest) => {
     user_id,
   } = req
   const session = await stripe.checkout.sessions.create({
-    success_url: 'http://localhost:3000/trips/success',
+    success_url: `${process.env.APP_UR}/trips/success`,
     line_items: [
       {
         price_data: {

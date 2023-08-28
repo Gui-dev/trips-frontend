@@ -51,7 +51,7 @@ export const TripReservation = ({
     data: TripReservationValidationData,
   ) => {
     const { start_date, end_date, guests } = data
-    const response = await fetch('http://localhost:3000/api/trips/check', {
+    const response = await fetch('/api/trips/check', {
       method: 'POST',
       body: JSON.stringify({
         trip_id,
