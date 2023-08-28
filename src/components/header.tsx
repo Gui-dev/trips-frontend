@@ -25,8 +25,12 @@ export const Header = () => {
 
   return (
     <header className="container mx-auto flex h-[93px] items-center justify-between p-5 py-0">
-      <Link href="/">
-        <Image src="/logo.png" width={183} height={32} alt="Trips Logo" />
+      <Link
+        href="/"
+        className="flex flex-row items-center justify-center gap-1"
+      >
+        <Image src="/logo-2.jpeg" width={42} height={42} alt="Trips Logo" />
+        <h1 className="text-xl font-semibold text-primary-normal">MyTrips</h1>
       </Link>
       {status === 'unauthenticated' && (
         <button
