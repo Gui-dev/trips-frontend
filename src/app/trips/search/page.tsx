@@ -79,26 +79,31 @@ const Trips = async ({ searchParams }: TripsProps) => {
 
   return (
     <section className="container mx-auto flex flex-col items-center p-5">
-      <h1 className="mb-5 text-lg font-semibold text-primary-darker">
+      <h1 className="mb-5 text-lg font-semibold text-primary-darker lg:text-[2.5rem]">
         Hospedagens encontradas
       </h1>
       {trips && trips.length < 1 && (
-        <p className="mb-5 text-sm text-textColor-darker">
+        <p className="mb-5 text-sm text-textColor-darker lg:text-2xl">
           Desculpe, não encontramos nenhuma viagem com essas opções
         </p>
       )}
 
-      {trips &&
-        trips.map((trip) => {
-          return (
-            <>
-              <h2 className="mb-5 text-sm text-textColor-darker">
-                Listamos as melhores viagens para você!
-              </h2>
-              <TripItem key={trip.id} trip={trip} />
-            </>
-          )
-        })}
+      {trips && trips.length > 0 && (
+        <h2 className="mb-5 text-sm text-textColor-darker lg:my-6 lg:text-base">
+          Listamos as melhores viagens para você!
+        </h2>
+      )}
+
+      <div className="flex flex-col gap-4 lg:mx-auto lg:mt-6 lg:grid lg:max-w-[948px] lg:grid-cols-3 lg:gap-10 lg:pb-10">
+        {trips &&
+          trips.map((trip) => {
+            return (
+              <>
+                <TripItem key={trip.id} trip={trip} />
+              </>
+            )
+          })}
+      </div>
     </section>
   )
 }
