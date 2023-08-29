@@ -9,10 +9,10 @@ export const QuickSearch = () => {
         <h2 className="whitespace-nowrap font-semibold text-primary-light">
           Tente pesquisar por
         </h2>
-        <div className="h-[2px] w-full bg-gray-200" />
+        <div className="h-[1px] w-full bg-gray-200" />
       </div>
 
-      <div className="mt-5 flex w-full justify-between">
+      <div className="mt-5 flex w-full justify-between lg:mx-auto lg:mt-10 lg:max-w-[948px] lg:justify-center lg:gap-60">
         <Link
           href="/trips/search?destination=hotel"
           className="flex flex-col items-center justify-center gap-1 transition-colors hover:text-primary-normal"
@@ -23,7 +23,7 @@ export const QuickSearch = () => {
             width={35}
             alt="Hotel icon"
           />
-          <p className="text-sm text-textColor-darker">Hotel</p>
+          <p className="text-sm text-textColor-darker lg:text-base">Hotel</p>
         </Link>
         <Link
           href="/trips/search?destination=fazenda"
@@ -35,7 +35,7 @@ export const QuickSearch = () => {
             width={35}
             alt="icone Fazenda"
           />
-          <p className="text-sm text-textColor-darker">Fazenda</p>
+          <p className="text-sm text-textColor-darker lg:text-base">Fazenda</p>
         </Link>
         <Link
           href="/trips/search?destination=chalé"
@@ -47,7 +47,7 @@ export const QuickSearch = () => {
             width={35}
             alt="icone Chalé"
           />
-          <p className="text-sm text-textColor-darker">Chalé</p>
+          <p className="text-sm text-textColor-darker lg:text-base">Chalé</p>
         </Link>
         <Link
           href="/trips/search?destination=pousada"
@@ -59,7 +59,7 @@ export const QuickSearch = () => {
             width={35}
             alt="icone Pousada"
           />
-          <p className="text-sm text-textColor-darker">Pousada</p>
+          <p className="text-sm text-textColor-darker lg:text-base">Pousada</p>
         </Link>
       </div>
     </div>

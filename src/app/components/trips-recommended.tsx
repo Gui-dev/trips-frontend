@@ -11,10 +11,10 @@ export const TripsRecommended = async () => {
         <h2 className="whitespace-nowrap font-semibold text-primary-light">
           Destinos recomendados
         </h2>
-        <div className="h-[2px] w-full bg-gray-200" />
+        <div className="h-[1px] w-full bg-gray-200" />
       </div>
 
-      <div className="mt-5 flex flex-col items-center gap-5">
+      <div className="mt-5 flex flex-col items-center gap-5 lg:mx-auto lg:my-12 lg:grid lg:max-w-[948px] lg:grid-cols-3 lg:gap-10">
         {trips.map((trip) => {
           return <TripItem key={trip.id} trip={trip} />
         })}

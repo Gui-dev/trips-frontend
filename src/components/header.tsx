@@ -24,7 +24,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="container mx-auto flex h-[93px] items-center justify-between p-5 py-0">
+    <header className="container mx-auto flex h-[93px] items-center justify-between p-5 py-0 lg:max-w-[948px] lg:px-0">
       <Link
         href="/"
         className="flex flex-row items-center justify-center gap-1"
