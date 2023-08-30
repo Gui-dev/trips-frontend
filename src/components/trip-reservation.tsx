@@ -92,9 +92,9 @@ export const TripReservation = ({
   }
 
   return (
-    <div className="flex flex-col px-5">
+    <div className="flex flex-col px-5 lg:min-w-[360px] lg:rounded-lg lg:border lg:border-solid lg:border-primary-light lg:px-0 lg:shadow-md">
       <form
-        className="flex flex-col gap-2"
+        className="flex flex-col gap-2 lg:p-5"
         onSubmit={handleSubmit(handleCreateReservation)}
       >
         <div className="flex gap-2">
@@ -150,16 +150,18 @@ export const TripReservation = ({
         <div className="mt-3 flex items-center justify-between">
           {startDate && endDate && (
             <>
-              <p className="text-sm font-semibold text-primary-darker">
+              <p className="text-sm font-semibold text-primary-light lg:text-base">
                 Total:{' '}
               </p>
-              <p>{total}</p>
+              <p className="text-base font-semibold text-primary-darker lg:mb-2 lg:text-lg">
+                {total}
+              </p>
             </>
           )}
         </div>
         <Button variant="primary">Reservar agora</Button>
       </form>
-      <div className="h-[1px] w-full border-b border-solid border-primary-light py-5" />
+      <div className="h-[1px] w-full border-b border-solid border-primary-light py-5 lg:hidden" />
     </div>
   )
 }
