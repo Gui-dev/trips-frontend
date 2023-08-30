@@ -23,7 +23,7 @@ const TripDetails = async ({ params }: { params: { trip_id: string } }) => {
   return (
     <div className="container mx-auto">
       <TripHeader trip={trip} />
-      <div className="mx-auto flex flex-col lg:mt-12 lg:max-w-[948px] lg:flex-row">
+      <div className="mx-auto flex flex-col lg:mt-12 lg:max-w-[948px] lg:flex-row lg:gap-7">
         <div className="lg:order-2">
           <TripReservation
             trip_id={trip.id}
