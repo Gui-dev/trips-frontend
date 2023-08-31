@@ -85,7 +85,7 @@ export const TripSearch = () => {
             )}
           />
         </div>
-        <Button variant="primary" className="lg:w-1/2">
+        <Button variant="primary" className="lg:h-fit lg:w-1/2">
           Buscar
         </Button>
       </form>

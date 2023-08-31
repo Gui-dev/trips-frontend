@@ -6,7 +6,7 @@ export const tripSearchValidation = z.object({
       invalid_type_error: 'Destino é obrigatório',
       required_error: 'Destino é obrigatório',
     })
-    .nonempty('Destino é obrigatório. Ex: Sào Paulo'),
+    .nonempty('Destino é obrigatório. Ex: São Paulo'),
   start_date: z
     .date({
       invalid_type_error: 'Selecione data de início',
