@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AiOutlineMenu } from 'react-icons/ai'
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 
 export const Header = () => {
   const { data, status } = useSession()
@@ -42,7 +42,7 @@ export const Header = () => {
       )}
 
       {status === 'authenticated' && data.user && (
-        <div className="relative flex items-center justify-center gap-5 rounded-full border border-solid border-gray-200 p-2">
+        <div className="flex items-center justify-center gap-5 rounded-full border border-solid border-gray-200 p-2">
           <button onClick={handleOpenMenu}>
             <AiOutlineMenu size={16} />
           </button>
@@ -53,21 +53,31 @@ export const Header = () => {
             width={24}
             className="rounded-full shadow-md"
           />
+          {/* -right-1 top-12 */}
           {isOpenMenu && (
-            <div className="absolute -right-1 top-12 z-10 flex h-[100px] w-auto flex-col items-center justify-center gap-3 rounded-lg border border-solid border-gray-200 bg-white p-2 px-3 shadow-md">
-              <Link
-                href="/my-trips"
-                className="border-b border-solid border-primary-light pb-2 text-center text-xs font-semibold text-primary-normal"
-                onClick={handleOpenMenu}
-              >
-                Minhas viagens
-              </Link>
-              <button
-                className="pb-2 text-xs font-semibold text-primary-normal"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+            <div className="fixed left-0 top-0 z-20 flex h-screen w-full items-center justify-center overscroll-none">
+              <div className="absolute left-0 top-0 z-10 flex h-screen w-full flex-col items-center justify-center gap-3 border border-solid border-gray-200 bg-white/80">
+                <button
+                  className="absolute right-16 top-10 pb-2 text-lg font-semibold text-primary-normal lg:text-3xl lg:hover:text-primary-darker"
+                  onClick={handleOpenMenu}
+                >
+                  <AiOutlineClose />
+                </button>
+
+                <Link
+                  href="/my-trips"
+                  className="border-b border-solid border-primary-light pb-2 text-center text-xs font-semibold text-primary-normal lg:text-xl lg:hover:text-primary-darker"
+                  onClick={handleOpenMenu}
+                >
+                  Minhas viagens
+                </Link>
+                <button
+                  className="pb-2 text-xs font-semibold text-primary-normal lg:text-xl lg:hover:text-red-400"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           )}
         </div>
