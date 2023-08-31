@@ -95,7 +95,7 @@ const TripConfirmation = ({
   }
 
   return (
-    <section className="container mx-auto p-5">
+    <section className="container mx-auto p-5 lg:max-w-[600px]">
       <h1 className="text-xl font-semibold text-primary-darker">Sua viagem</h1>
       <div className="mt-5 flex flex-col rounded-lg border border-solid border-primary-light p-5 shadow-lg">
         <div className="flex items-center gap-4 border-b border-solid border-primary-light pb-5">
