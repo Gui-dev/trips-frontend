@@ -53,7 +53,7 @@ export const TripSearch = () => {
           error={!!errors?.destination}
           errorMessage={errors.destination?.message}
         />
-        <div className="flex gap-4 lg:w-full">
+        <div className="flex flex-col gap-4 lg:w-full lg:flex-row">
           <Controller
             name="start_date"
             control={control}
@@ -63,7 +63,7 @@ export const TripSearch = () => {
                 dateFormat="dd/MM/yyyy"
                 selected={field.value}
                 onChange={field.onChange}
-                className="w-full"
+                className="w-full flex-1"
                 minDate={new Date()}
                 error={!!errors?.start_date}
                 errorMessage={errors.start_date?.message}
@@ -81,6 +81,7 @@ export const TripSearch = () => {
                 onBlur={field.onBlur}
                 error={!!errors.budget}
                 errorMessage={errors.budget?.message}
+                className="w-full flex-1"
               />
             )}
           />
