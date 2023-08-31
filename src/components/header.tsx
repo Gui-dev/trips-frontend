@@ -5,6 +5,7 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
+import Loading from './loading'
 
 export const Header = () => {
   const { data, status } = useSession()
@@ -21,6 +22,10 @@ export const Header = () => {
   const handleLogout = () => {
     setIsOpenMenu(false)
     signOut()
+  }
+
+  if (status === 'loading') {
+    return <Loading />
   }
 
   return (
